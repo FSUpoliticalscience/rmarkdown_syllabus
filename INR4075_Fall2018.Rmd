@@ -1,0 +1,247 @@
+---
+title: "International Human Rights"
+author: ''
+date: "Fall 2018"
+output:
+  pdf_document:
+    fig_caption: yes
+    keep_tex: yes
+    latex_engine: pdflatex
+    template: ~/Dropbox/Teaching/INR4075/template.tex
+  html_document:
+    df_print: paged
+coursenumber: INR 4075-0001
+classhours: MW 03:35-04:50 p.m.
+email: kfruge@fsu.edu
+fontfamily: mathpazo
+fontsize: 11pt
+geometry: margin=1in
+header-includes: \linespread{1.05}
+office: Bellamy 543
+officehours: TR 10:00-noon or by appointment
+classroom: Bellamy 0005
+prof: Kimberly R. Frugé
+biblio-style: apsr
+web: canvas.fsu.edu
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r calendar, include=FALSE}
+
+#This chunk creates the calendar for the class
+
+#Input first day of class 
+
+firstday <- as.Date("2018-08-27")
+
+
+#if you have to account for holidays or days that you will miss class due to prior arrangement add dates and any reason you want to give on syllabus 
+missing.days<- as.Date(c("2018-09-03", "2018-11-07", "2018-11-12", "2018-11-21"))
+missing.days<- format(missing.days, format="%m/%d")
+reason.missing <- c("Labor Day", "Prof. Frugé to Peace Science Society Annual Meeting", "Veteran's Day", "Happy Thanksgiving")
+
+missing <- as.data.frame(cbind(missing.days, reason.missing))
+
+
+#create days of class (this is for monday wednesday class by can be easily changed for any arrangement of days) 
+mondays <- function(first.day, week) {
+ mon <- first.day + 7*(week-1)
+ mon <- format(mon, format="%m/%d")
+ return(mon)
+}
+
+wednesdays <- function(first.day, week) {
+ mon <- first.day + 7*(week-1)
+ wed <- mon + 2
+ wed <- format(wed, format="%m/%d")
+ return(wed)
+}
+
+#input number of weeks 
+weeks<- 15 #Do not include final exam week 
+
+
+#make calendar of days 
+calendar<-vector()
+
+for(i in 1:weeks){ 
+     
+     calendar<- rbind(calendar, mondays(firstday,i), wednesdays(firstday,i))
+     
+}
+
+#if final exam is on a unique day add it here 
+
+calendar <- rbind(calendar, mondays(firstday, 16)) 
+
+
+```
+
+``` {r uploadfiles, include=FALSE} 
+
+#upload bibliography 
+library(RefManageR)
+bib <- ReadBib("~/Dropbox/Teaching/INR4075/syllabus.bib") # Change to whatever is your .bib file
+myopts <- BibOptions(bib.style = "authoryear", style="latex", first.inits=FALSE, max.names = 20)
+
+#upload lectures file 
+lecturesFile <- 'lectures' 
+lectures <- read.csv(paste0(lecturesFile,'.csv'),stringsAsFactors=FALSE)
+
+
+```
+
+
+
+
+
+
+# Course Description 
+
+For the course description: This course introduces the student to the philosophical and legal foundations of the international human rights regime and explores the developments of norms and institutions with special emphasis on the post-World War II era. 
+
+In this course, students are introduced to the international human rights regime and explores the states responsibility to protect these rights. The course is structured to examine, who violates human rights, why these states violate human rights, and how the domestic governments and international organizations improve human rights standards throughout the world. 
+
+By the end of the course students will complete the following objectives: 
+
+1. Explain the conceptual and historical evolution of the international human rights regime, and understand the empirical regularities of human rights violations across time and space.
+
+2. Summarize academic theories about the incentives states face to violate human rights and to create domestic and international institutions protecting the rights of individuals, and determine whether empirical evidence supports or falsifies those theories.
+
+3. Make policy recommendations regarding the protection of human rights based on theory and empirical evidence, and communicate those recommendations orally and in writing. 
+
+# Required Readings
+
+There are no required textbooks for this course. Instead, we will discuss a variety of readings from academic journals and excerpts from various textbooks. You are expected to do the assigned reading \emph{before} class. Daily reading assignments are listed on the syllabus and can be found on the canvas course page. I will notify you of any changes to the reading in class or by university email.
+
+In some of the articles you will read,the methods used will be entirely new to you. I do not expect you to familiarize yourself or understand all the methodological tools used in the readings. Instead, it is my hope that through readings and lecture, you will have the tools necessary to understand, evaluate, and criticize the authors' arguments. 
+
+# Course Evaluations 
+
+Your grade is a weighted average of the following components: 
+
+* Midterm Exam (20\%) - 100 points 
+* Final Exam (20\%) - 100 points 
+* Assignments (40\%) - 200 points (5 Assignments-40 points each) 
+* Quizzes/In-class Assignments (20\%) - 100 points (10 quizzes - 10 points each)
+
+The grading scale for this class is as follows: 
+\begin{table}[h] \centering
+\begin{tabular}{l  r | l r | l r   } 
+Grade & Percentage  & Grade & Percentage & Grade & Percentage  \\  \hline
+   &    & A     & 100 - 93\%  & A-    & 92 - 90\%   \\ 
+B+    & 89 - 87\% &   B     & 86 - 83\% &   B-    & 82 - 80\%   \\  
+C+    & 79 - 77\%   & C     & 76 - 73\%  & C-    & 72 - 70\%  \\ 
+D+    & 69 - 67\%   & D     & 66 - 63\%   & D-    & 62 - 60\%  \\
+&& F     & 59 - 0\%   &&\\ 
+\end{tabular}
+\end{table}
+  
+
+## Exams 
+
+All students will take two exams (midterm and final), consisting of a combination of multiple choice and short-answer questions. The exams will be based on class lectures, assigned readings, and class discussion.
+
+* Midterm Exam: 
+* Final Exam: 
+
+## Assignments 
+
+You will complete five assignments for this course. Each assignment is based on applying the theories from class and the readings to a real world example. Each assignment is worth 40 points. Late assignments receive 5 points off (one letter grade) for every day that it is late. 
+
+Assignments will be graded by (1) how well you refer to the theories learned in class to answer the question, and (2) how well you apply those theories to the real world example. There is no page limit. Please write as much as you need to answer the questions and reference the relevant theories learned in class. 
+
+
+## Quizzes/In-class Assignments 
+
+You will take at least 10 quizzes in this course. Some quizzes will be graded and others are for participation (each assignment will be clearly marked whether it is graded or for participation). Quizzes and in-class assignments may or may not be announced prior to the day they are given. If more than 10 quizzes are given, only the 10 highest grades will count. 
+
+# Course Policies 
+
+1. **Make-Up Exams:** I have a "no questions asked" early exam policy, which means that any exam can be taken early for any reason. However, only exams missed due to excused absences will be eligible for students to take at a later date. Students who are aware that they will miss an exam or have missed one due to an emergency are responsible for contacting the instructor to arrange a new exam date at least a week before the exam for planned occasions and in a timely manner for emergencies.
+2. **Classroom Behavior:** Students should be respectful of others and refrain from behaving in a disruptive manner, including talking/texting on cell phone, speaking out of turn, reading non-class material, entering (leaving) class late (early), watching netflix, etc. When class permits itself to discussion, students should also be courteous to others opinions and backgrounds. Personal attacks or discrimination based on race, ethnicity, gender, religion, and/or lifestyle will not be tolerated. If a student fails to follow any of these behavior guidelines they will be asked to leave, and any persistent behavior can result in the removal of that student from the course.
+3. **Incompletes:** Incompletes will be determined on an individual basis and generally will only be granted in extreme cases at the discretion of the instructor and in consultation with the Dean of Students/Dean of the College of Social Sciences. Please see me as soon as possible to determine the correct course of action to handle any major situations regarding this course and/or taking an incomplete.
+4. **Cheating:** Cheating and/or plagiarism will not be tolerated in this class. Any violation of the Academic Honor Policy will be referred to the Dean of Students and will result in a zero for the assignment or the course at my discretion.
+5. **Assignment Review:** If you are concerned about your grade on an assignment, I am happy to review it. However, I require that you 1) wait 24 hours after the assignment has been returned to you to request review, and 2) outline your concerns about the assignment grade via email. Please be aware that I will regrade the entire assignment (not just one portion of it) if you request review, and I reserve the right to raise or lower your grade as a result.
+6. **Extra Credit:** There will be no extra credit offered for this course. 
+7. **Email Policy:** Please include your first and last name and course information in the subject line of your email. When I receive your email, I will make every effort to respond in a timely manner, usually within 24 hours. Though you may receive a reply sooner than that, you should not expect an immediate
+response. Please treat all email correspondences with your instructor as you would treat any other
+professional exchange. Accordingly, I expect emails to be respectful and polite, to use correct
+grammar and complete sentences.
+8. **Technology:** I can assure you, you will not find the answers to class discussion in your text, on facebook, twitter, or instagram. Cell phones and laptops are generally a distraction and detrimental to the classroom experience. They have the tendency to
+take students away from the lecture and impede the active engagement with students, instructors and/or peers. While I do permit the use of laptops and tablets for note-taking, I encourage you to leave your laptops at home, to take notes with a pen or a pencil and to engage in classroom discussions. 
+
+# University Policies 
+
+## University Attendance Policy:
+Excused absences include documented illness, deaths in the family and other documented crises, call to active military duty or jury duty, religious holy days, and official University activities. These absences will be accommodated in a way that does not arbitrarily penalize students who have a valid excuse. Consideration will also be given to students whose dependent children experience serious illness.
+
+## Americans with Disabilities Act: 
+Students with disabilities needing academic accommodations should: (1) register with and provide documentation to the Student Disability Resource Center (SDRC); and (2) bring a letter to the instructor indicating that you need academic accommodations and what type. This should be done within the first week of class.
+This syllabus and other class materials are available in alternative format upon request.  
+
+For more information about services available to FSU students with disabilities, contact:  
+Student Disability Resource Center    
+874 Traditions Way  
+108 Student Services Building   
+Florida State University  
+Tallahassee, FL 32306-4167  
+(850) 644-9566 (voice)  
+(850) 644-8504 (TDD)  
+sdrc@admin.fsu.edu  
+http://www.disabilitycenter.fsu.edu  
+
+## FSU Academic Honesty Code 
+The Florida State University Academic Honor Policy outlines the
+University's expectations for the integrity of students' academic work, the procedures for resolving alleged violations of those expectations, and the rights and responsibilities of students
+and faculty members throughout the process. Students are responsible for reading the Academic Honor Policy and for living up to their pledge to ``...be honest and truthful and... [to] strive for
+personal and institutional integrity at Florida State University.'' (See the Florida State University Academic Honor Policy for more information.) 
+
+## Syllabus Change Policy: 
+Except for changes that substantially affect implementation of the evaluation (grading) statement, this syllabus is a guide for the course and is subject to change with advance notice.  
+
+
+# Tentative Schedule 
+
+```{r formatdates, echo=FALSE, results="asis"} 
+
+num_days<- length(calendar) 
+lecture.count<- 0 #counter for lecture 
+for(i in 1:num_days){ 
+     
+      cat(' \n') 
+     
+     date<- calendar[i] 
+     
+     if(date %in% missing.days){ 
+ 
+          cat("##", date , "Day", i, ": No Class")
+          cat('  \n', '   \n')
+          cat(as.character(missing[missing$missing.days==date, 2]))
+          cat('  \n', '   \n', '   \n')
+     
+     }  else{
+          
+          lecture.count <- lecture.count + 1 
+          
+          cat("##", date, "Day", i, ":", lectures[lecture.count, 1])
+          cat('  \n', '   \n')
+          print(bib[lectures[lecture.count, "Reading1"]])
+          
+          if(lectures$Reading2[lecture.count]!=""){
+               
+               cat('  \n')
+               print(bib[lectures[lecture.count, "Reading2"]])
+               cat('  \n', '   \n', '   \n') 
+               
+          } else{  cat('  \n', '   \n', '   \n') }
+       
+          
+}}
+
+
+
+```
