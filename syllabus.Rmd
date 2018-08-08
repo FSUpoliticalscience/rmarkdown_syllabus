@@ -46,11 +46,18 @@ reason.missing <- c("Labor Day", "Prof. Frugé to Peace Science Society Annual M
 missing <- as.data.frame(cbind(missing.days, reason.missing))
 
 
-#create days of class (this is for monday wednesday class by can be easily changed for any arrangement of days) 
+#create days of class 
 mondays <- function(first.day, week) {
  mon <- first.day + 7*(week-1)
  mon <- format(mon, format="%m/%d")
  return(mon)
+}
+
+tuesdays <- function(first.day, week) {
+ mon <- first.day + 7*(week-1)
+ tues <- mon + 1
+ tues <- format(tues, format="%m/%d")
+ return(tues)
 }
 
 wednesdays <- function(first.day, week) {
@@ -60,11 +67,29 @@ wednesdays <- function(first.day, week) {
  return(wed)
 }
 
+thursdays <- function(first.day, week) {
+ mon <- first.day + 7*(week-1)
+ thurs<- mon + 3
+ thurs <- format(thurs, format="%m/%d")
+ return(thurs)
+}
+
+fridays <- function(first.day, week) {
+ mon <- first.day + 7*(week-1)
+ fri<- mon + 4
+ fri <- format(fri, format="%m/%d")
+ return(fri)
+}
+
+
 #input number of weeks 
-weeks<- 15 #Do not include final exam week 
+weeks<- 15 # I do not include final exam week as it is a unique week at FSU 
 
 
-#make calendar of days 
+# make calendar of days, this example is for a MW course. 
+# if the course is TR replace with 
+# calendar<- rbind(calendar, tuesdays(firstday,i), thursdays(firstday,i))
+# or any combination that works for you 
 calendar<-vector()
 
 for(i in 1:weeks){ 
@@ -73,7 +98,7 @@ for(i in 1:weeks){
      
 }
 
-#if final exam is on a unique day add it here 
+#if final exam is on a unique day add it here, for example here me final exam in Monday during week 16. 
 
 calendar <- rbind(calendar, mondays(firstday, 16)) 
 
